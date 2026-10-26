@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFNMRQC Project | 地球磁場核磁気共鳴による卓上量子コンピュータ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0a0e14;
+            --bg-card: #121822;
+            --border-color: #243044;
+            --accent: #00d2ff;
+            --accent-sub: #3a7bd5;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --success: #2ea043;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        /* ヘッダー（ヒーローエリア） */
+        .hero {
+            background: radial-gradient(circle at top, #16243a 0%, var(--bg-main) 75%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 3.2rem;
+            margin: 0;
+            background: linear-gradient(90deg, #00d2ff, #68a4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 10px 0 24px;
+        }
+
+        .tagline {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.8rem;
+            color: #fff;
+            border-left: 4px solid var(--accent);
+            padding-left: 14px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 1.25rem;
+        }
+
+        /* スペック・数値ハイライト */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* システム構成リスト */
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .spec-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-tag {
+            display: inline-block;
+            background: #1f2937;
+            color: var(--accent);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        /* リンク集（lit.linkの進化版） */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .link-card {
+            display: block;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.25s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.15);
+        }
+
+        .link-card h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent);
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
+        }
+
+        .link-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        @media (max-width: 600px) {
+            .project-title {
+                font-size: 2.3rem;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="status-badge">FID SIGNAL DETECTED // ACTIVE PROJECT</div>
+        <h1 class="project-title">EFNMRQC Project</h1>
+        <p class="subtitle">〜地球磁場核磁気共鳴による卓上量子コンピュータ〜</p>
+        <!-- ▼ 自由に文章を書き換えられます ▼ -->
+        <p class="tagline">
+            数億円・極低温の設備を必要とする既存の量子コンピュータの常識を覆し、地球磁場（約50μT）と自作ハードウェアのみで室温動作する『卓上量子コンピュータ』を開発・民主化するプロジェクト。
+        </p>
+    </header>
+
+    <main class="container">
+
+        <!-- ハイライト数値 -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-num">1,600 Turns</div>
+                <div class="stat-label">250m手巻きセンサーコイル</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">~2.04 kHz</div>
+                <div class="stat-label">プロトン歳差運動 観測周波数</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">~50 μT</div>
+                <div class="stat-label">地球磁場による室温動作</div>
+            </div>
+        </div>
+
+        <!-- ビジョン＆背景 -->
+        <section class="section">
+            <h2 class="section-title">01 // VISION & BACKGROUND</h2>
+            <div class="card">
+                <h3>「ないなら作る」—— 量子計算を机の上へ</h3>
+                <!-- ▼ 自由に文章を書き換えられます ▼ -->
+                <p>
+                    現在の量子コンピュータは、絶対零度近くの冷却装置や巨大な超伝導電磁石を必要とし、一部の大学や大企業に独占されています。クラウド経由でブラックボックスとして触るだけでなく、「物理的なハードウェアに自分の手で直接触れて実験できる環境を作りたい」という想いから本プロジェクトは始まりました。
+                </p>
+                <p>
+                    人工的な強磁場の代わりにどこにでも存在する「地球磁場」を利用するEFNMR（地球磁場核磁気共鳴）方式を採用し、高専生の自作ハードウェアによる量子スピン操作と信号検出に挑んでいます。
+                </p>
+            </div>
+        </section>
+
+        <!-- 開発ストーリー＆ブレイクスルー -->
+        <section class="section">
+            <h2 class="section-title">02 // STORY & BREAKTHROUGH</h2>
+            <div class="card">
+                <h3>泥臭いハードウェア実装とFID信号の観測成功</h3>
+                <!-- ▼ 自由に文章を書き換えられます ▼ -->
+                <p>
+                    心臓部となるセンサーコイルは、外径48mmの塩ビ管に0.5mmのエナメル線（約250m）を2人がかりで1600回手作業で巻き上げました。また、9V電池の逆接で高価な超低歪オペアンプ（AD797BRZ）から煙を出して焼損させる痛恨のトラブルも経験しました。
+                </p>
+                <p>
+                    数々のノイズやトラブルを乗り越え、ついにオシロスコープおよびPCへの取り込みにて、地球磁場におけるプロトンのラーモア周波数帯域（約2.04kHz）の正弦波およびFID（自由誘導減衰）信号の観測に成功しました。
+                </p>
+            </div>
+        </section>
+
+        <!-- システム構成 -->
+        <section class="section">
+            <h2 class="section-title">03 // SYSTEM ARCHITECTURE</h2>
+            <div class="card">
+                <ul class="spec-list">
+                    <li>
+                        <span class="spec-tag">SENSOR</span>
+                        <strong>偏極・受信兼用コイル：</strong> 0.5mm 2UEWエナメル線 1600ターン手巻き（サンプル：精製水）
+                    </li>
+                    <li>
+                        <span class="spec-tag">POWER & DRIVE</span>
+                        <strong>完全バッテリー駆動分極回路：</strong> 12V鉛蓄電池 ＋ NchパワーMOSFET (2SK4017) ＋ ファストリカバリーダイオード（サージ保護）
+                    </li>
+                    <li>
+                        <span class="spec-tag">CONTROL</span>
+                        <strong>ミリ秒シーケンス制御：</strong> M5Stack CoreS3 Lite ＋ ミニリレーユニット（50msデッドタイムによる回路保護）
+                    </li>
+                    <li>
+                        <span class="spec-tag">ANALOG AMP</span>
+                        <strong>微小信号増幅回路：</strong> 超低歪低雑音オペアンプ (AD797BRZ) ＋ アルミシールドケース
+                    </li>
+                    <li>
+                        <span class="spec-tag">DSP & FPGA</span>
+                        <strong>信号解析・パルス制御：</strong> 96kHz/24-bit USBサウンドカード ＋ Python (FFT解析) / Tang Nano 20K (Verilog HDL)
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 各種リンク集 -->
+        <section class="section">
+            <h2 class="section-title">04 // LINKS & ARCHIVES</h2>
+            <div class="link-grid">
+                <a href="https://github.com/nmrqcproject/nmr-qc-project" class="link-card" target="_blank" rel="noopener">
+                    <h3>GitHub &rarr;</h3>
+                    <p>ソースコード・回路設計・日々の実験ログ（メインリポジトリ）</p>
+                </a>
+                <a href="https://protopedia.net/prototype/9802" class="link-card" target="_blank" rel="noopener">
+                    <h3>ProtoPedia &rarr;</h3>
+                    <p>システム構成図・開発ストーリー・ヒーローズリーグ応募ページ</p>
+                </a>
+                <a href="https://nmrqcp.blogspot.com/" class="link-card" target="_blank" rel="noopener">
+                    <h3>Blogger &rarr;</h3>
+                    <p>ハードウェア製作の詳細な技術解説と試行錯誤の記録</p>
+                </a>
+                <a href="https://zenn.dev/nmrqcp" class="link-card" target="_blank" rel="noopener">
+                    <h3>Zenn &rarr;</h3>
+                    <p>技術記事・まとめドキュメント</p>
+                </a>
+                <a href="https://x.com/nmrqcproject" class="link-card" target="_blank" rel="noopener">
+                    <h3>X (Twitter) &rarr;</h3>
+                    <p>@nmrqcproject リアルタイムな開発進捗と発信</p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EFNMRQC Project (NMRQCP). Built by a 15-year-old Kosen student.</p>
+    </footer>
+
+</body>
+</html>
