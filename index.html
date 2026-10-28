@@ -34,7 +34,7 @@
         .hero {
             background: radial-gradient(circle at top, #172a4a 0%, var(--bg-main) 80%);
             border-bottom: 1px solid var(--border-color);
-            padding: 60px 20px 60px;
+            padding: 60px 20px 50px;
             text-align: center;
         }
 
@@ -93,7 +93,7 @@
             font-family: 'Share Tech Mono', monospace;
             font-size: 1.4rem;
             color: var(--accent);
-            margin: 0 0 16px;
+            margin: 0 0 12px;
             letter-spacing: 1px;
         }
 
@@ -152,6 +152,43 @@
             margin-bottom: 16px;
         }
 
+        /* 要約セクション用ハイライト */
+        .summary-lead {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .stat-box {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
         .highlight-box {
             background: var(--bg-card-sub);
             border-left: 4px solid var(--accent);
@@ -159,6 +196,14 @@
             border-radius: 0 8px 8px 0;
             margin: 20px 0;
             font-weight: 700;
+        }
+
+        /* 区切り線 */
+        .divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 60px 0;
         }
 
         /* 画像スタイル */
@@ -230,7 +275,7 @@
             border-bottom: none;
         }
 
-        /* 折りたたみ（詳細ドキュメント用） */
+        /* 折りたたみ */
         details {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-color);
@@ -269,10 +314,10 @@
             opacity: 0.85;
         }
 
-        /* リンク集（Blogger削除済み） */
+        /* リンク集 */
         .link-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
         }
 
@@ -329,9 +374,8 @@
 </head>
 <body>
 
-    <!-- トップ（ヒーローエリア） -->
+    <!-- ① トップ（ヒーローエリア：そのまま維持） -->
     <header class="hero">
-        <!-- ロゴ画像（ファイル未アップロード時でもSVGロゴが自動表示されます） -->
         <div class="logo-wrapper">
             <img src="DA35C6BC-257D-4385-A040-D9BECAB786CD.png" alt="NMRQCP Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
             <svg id="fallback-logo" style="display:none; width:100%; height:100%;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -345,13 +389,11 @@
             </svg>
         </div>
 
-        <!-- コンセプト -->
         <div class="concept-badge">
             CONCEPT：量子コンピュータの民主化
             <span class="concept-en">DEMOCRATIZING QUANTUM COMPUTING</span>
         </div>
 
-        <!-- キャッチコピー -->
         <h1 class="catchphrase">ないなら作る。<br>量子コンピュータを机の上に</h1>
 
         <p class="project-name">NMRQCP // EFNMRQC Project</p>
@@ -362,7 +404,68 @@
 
     <main class="container">
 
-        <!-- 1. 量子コンピューターを自作することになった経緯・背景 -->
+        <!-- ② プロジェクトの概要（要約セクション） -->
+        <section class="section">
+            <h2 class="section-title">
+                <span>PROJECT SUMMARY</span>
+                プロジェクト概要（要約）
+            </h2>
+            <div class="card">
+                <p class="summary-lead">
+                    数億円・極低温の設備を必要とする既存の量子コンピュータの常識を覆し、地球磁場と自作ハードウェアのみで室温動作する『卓上量子コンピュータ』を開発・民主化するプロジェクトです。
+                </p>
+                <p>
+                    現在、量子コンピュータのハードウェアは大企業や一部の研究機関に独占されており、学生や個人が直接触れて実験できる環境がありません。そこで本プロジェクト（NMRQCP）では、人工的な強磁場の代わりにどこにでも存在する<strong>「地球磁場（約50μT）」</strong>を利用する<strong>EFNMR（地球磁場核磁気共鳴）方式</strong>を採用。250mのエナメル線を手巻きしたコイルやM5Stack、超低歪オペアンプ回路を自作し、誰もが机の上で量子ビット（純水中のプロトン）の操作・観測を行えるオープンソース環境の構築に挑んでいます。
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-num">1,600 Turns</div>
+                        <div class="stat-label">250m手巻きセンサーコイル</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">~2.04 kHz</div>
+                        <div class="stat-label">FID信号（歳差運動）観測成功</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">~50 μT</div>
+                        <div class="stat-label">地球磁場による室温動作</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ③ 上部リンク集 -->
+        <section class="section">
+            <h2 class="section-title">
+                <span>QUICK LINKS</span>
+                各種リンク・開発記録
+            </h2>
+            <div class="link-grid">
+                <a href="https://zenn.dev/nmrqcp" class="link-card" target="_blank" rel="noopener">
+                    <h3>Zenn &rarr;</h3>
+                    <p>これまでの開発記録の本・これからの実験ログ</p>
+                </a>
+                <a href="https://github.com/nmrqcproject/nmr-qc-project" class="link-card" target="_blank" rel="noopener">
+                    <h3>GitHub &rarr;</h3>
+                    <p>ソースコード・回路設計・実験データのリポジトリ</p>
+                </a>
+                <a href="https://protopedia.net/prototype/9802" class="link-card" target="_blank" rel="noopener">
+                    <h3>ProtoPedia &rarr;</h3>
+                    <p>EFNMRQC〜自宅で作る卓上量子コンピュータ〜 作品ページ</p>
+                </a>
+                <a href="https://x.com/nmrqcproject" class="link-card" target="_blank" rel="noopener">
+                    <h3>X (Twitter) &rarr;</h3>
+                    <p>@nmrqcproject リアルタイムな開発進捗の発信</p>
+                </a>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ④ 今の文章（詳細ストーリー・構成・民主化への想い）をそのまま掲載 -->
+
+        <!-- 01. 量子コンピューターを自作することになった経緯・背景 -->
         <section class="section">
             <h2 class="section-title">
                 <span>01 // BACKGROUND & STORY</span>
@@ -406,7 +509,7 @@
             </div>
         </section>
 
-        <!-- 2. EFNMR量子コンピューター自作プロジェクトの詳細 -->
+        <!-- 02. EFNMR量子コンピューター自作プロジェクトの詳細 -->
         <section class="section">
             <h2 class="section-title">
                 <span>02 // PROJECT DETAILS & ARCHITECTURE</span>
@@ -474,7 +577,7 @@
             </div>
         </section>
 
-        <!-- 3. これまでの開発記録とこれからの開発記録 -->
+        <!-- 03. これまでの開発記録とこれからの開発記録 -->
         <section class="section">
             <h2 class="section-title">
                 <span>03 // DEVELOPMENT LOGS</span>
@@ -493,7 +596,7 @@
             </div>
         </section>
 
-        <!-- 4. 量子コンピューターのハードの民主化 -->
+        <!-- 04. 量子コンピューターのハードの民主化 -->
         <section class="section">
             <h2 class="section-title">
                 <span>04 // DEMOCRATIZING QUANTUM HARDWARE</span>
@@ -519,7 +622,7 @@
             </div>
         </section>
 
-        <!-- 5. プロフィール名の由来 ＆ ポスター -->
+        <!-- 05. プロフィール名の由来 ＆ ポスター -->
         <section class="section">
             <h2 class="section-title">
                 <span>05 // ORIGIN OF "NMRQCP" & POSTER</span>
@@ -541,7 +644,9 @@
             </div>
         </section>
 
-        <!-- 6. リンク集（Blogger削除済み） -->
+        <hr class="divider">
+
+        <!-- ⑤ 最後にもう一度リンク集を配置 -->
         <section class="section">
             <h2 class="section-title">
                 <span>06 // LINKS</span>
