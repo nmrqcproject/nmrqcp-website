@@ -317,7 +317,7 @@
         /* リンク集 */
         .link-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
         }
 
@@ -374,7 +374,7 @@
 </head>
 <body>
 
-    <!-- ① トップ（ヒーローエリア：そのまま維持） -->
+    <!-- ① トップ（ヒーローエリア） -->
     <header class="hero">
         <div class="logo-wrapper">
             <img src="DA35C6BC-257D-4385-A040-D9BECAB786CD.png" alt="NMRQCP Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
@@ -450,6 +450,10 @@
                     <h3>GitHub &rarr;</h3>
                     <p>ソースコード・回路設計・実験データのリポジトリ</p>
                 </a>
+                <a href="https://hackaday.io/project/207095-efnmr-quantum-computer-project-nmrqcp" class="link-card" target="_blank" rel="noopener">
+                    <h3>Hackaday.io &rarr;</h3>
+                    <p>Desktop EFNMR Quantum Computer — Build Logs &amp; Specs (English)</p>
+                </a>
                 <a href="https://protopedia.net/prototype/9802" class="link-card" target="_blank" rel="noopener">
                     <h3>ProtoPedia &rarr;</h3>
                     <p>EFNMRQC〜自宅で作る卓上量子コンピュータ〜 作品ページ</p>
@@ -463,7 +467,7 @@
 
         <hr class="divider">
 
-        <!-- ④ 今の文章（詳細ストーリー・構成・民主化への想い）をそのまま掲載 -->
+        <!-- ④ 詳細ストーリー・構成・民主化への想い -->
 
         <!-- 01. 量子コンピューターを自作することになった経緯・背景 -->
         <section class="section">
@@ -553,7 +557,7 @@
                     <p class="img-caption">▲ 自作したEFNMR量子コンピューターのプロトタイプ全体（手巻きコイル、鉛蓄電池、M5Stack、アルミケース内アンプ回路）</p>
                 </div>
 
-                <!-- 添付写真のギャラリー（GitHubに同じファイル名でアップロードすると表示されます） -->
+                <!-- 添付写真のギャラリー -->
                 <div class="photo-grid">
                     <div class="img-container">
                         <img src="PXL_20261006_105329927.MACRO_FOCUS.jpg" alt="超低歪オペアンプAD797BRZを用いたアンプ回路" onerror="this.parentElement.style.display='none';">
@@ -638,7 +642,7 @@
             <div class="card" style="text-align: center;">
                 <h3>プロジェクト公式ポスター</h3>
                 <p>コンセプトとキャッチコピーをまとめたプロジェクトポスターです。</p>
-                <a href="NMRQCP 高専で地球磁場を利用したEFNMR 量子コンピュータを開発中。 開発ログは上のQRからどうぞ！.pdf" class="btn-poster" target="_blank" rel="noopener">
+                <a id="poster-link" href="NMRQCP 高専で地球磁場を利用したEFNMR 量子コンピュータを開発中。 開発ログは上のQRからどうぞ！.pdf" class="btn-poster" target="_blank" rel="noopener">
                     📄 ポスター（PDF）を見る
                 </a>
             </div>
@@ -661,6 +665,10 @@
                     <h3>GitHub &rarr;</h3>
                     <p>ソースコード・回路設計・実験データのリポジトリ</p>
                 </a>
+                <a href="https://hackaday.io/project/207095-efnmr-quantum-computer-project-nmrqcp" class="link-card" target="_blank" rel="noopener">
+                    <h3>Hackaday.io &rarr;</h3>
+                    <p>Desktop EFNMR Quantum Computer — Build Logs &amp; Specs (English)</p>
+                </a>
                 <a href="https://protopedia.net/prototype/9802" class="link-card" target="_blank" rel="noopener">
                     <h3>ProtoPedia &rarr;</h3>
                     <p>EFNMRQC〜自宅で作る卓上量子コンピュータ〜 作品ページ</p>
@@ -677,6 +685,30 @@
     <footer>
         <p>&copy; 2026 NMRQCP (EFNMRQC Project). Built by Shonosuke Ikebuchi.</p>
     </footer>
+
+    <!-- Macの日本語ファイル名（NFD文字コード）対策＆PDFファイル自動検出スクリプト -->
+    <script>
+        (function() {
+            const posterLink = document.getElementById('poster-link');
+            if (!posterLink) return;
+
+            // 1. Mac特有の濁点・半濁点（NFD形式）に即時変換
+            const rawName = "NMRQCP 高専で地球磁場を利用したEFNMR 量子コンピュータを開発中。 開発ログは上のQRからどうぞ！.pdf";
+            posterLink.href = "./" + encodeURIComponent(rawName.normalize('NFD'));
+
+            // 2. GitHubリポジトリ内の実際の.pdfファイル名を自動取得して確実にリンクを繋ぐ
+            fetch('https://api.github.com/repos/nmrqcproject/nmrqcp-website/contents/')
+                .then(response => response.json())
+                .then(files => {
+                    if (!Array.isArray(files)) return;
+                    const pdfFile = files.find(file => file.name && file.name.toLowerCase().endsWith('.pdf'));
+                    if (pdfFile) {
+                        posterLink.href = "./" + encodeURIComponent(pdfFile.name);
+                    }
+                })
+                .catch(err => console.error('PDF link auto-resolve error:', err));
+        })();
+    </script>
 
 </body>
 </html>
